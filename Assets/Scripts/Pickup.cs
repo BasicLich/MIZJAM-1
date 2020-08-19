@@ -24,9 +24,13 @@ public class Pickup : MonoBehaviour
 
     public void SetText(string s) {
 
-        
+
         ItemManager.SetText(s);
 
+    }
+
+    public void AddJump() {
+        ItemManager.AddJump();
     }
 
 

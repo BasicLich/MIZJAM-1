@@ -13,7 +13,9 @@ public class GroundController : ControllerBase {
     [SerializeField] public GameObject cam;
 
 
-    
+    public ItemManager itemManager;
+
+
     private Rigidbody rigidBody;
     Vector3 velocity;
     public Vector3 lastGroundedPosition;
@@ -27,9 +29,14 @@ public class GroundController : ControllerBase {
     [SerializeField] private Transform jumpPoint;
     [SerializeField] public int maxJumps = 0;
     [SerializeField] private float jumpSpeed = 8f;
-    private int currentJumps = 0;
+    public int currentJumps = 0;
     bool grounded = false;
+    bool prevGrounded = false;
+    bool timetillNextCheck;
     public Animator animator;
+
+    
+    
 
     private float inputHorizontal, inputVertical;
 
@@ -82,12 +89,16 @@ public class GroundController : ControllerBase {
         velocity = velocity * walkSpeed;
         velocity.y = rigidBody.velocity.y;
 
-
+        
         grounded = feetCheck.grounded;
 
-        if (grounded) {
-            currentJumps = 0;
+        if (grounded && !prevGrounded) {
+            itemManager.ReactivateAllJumps();
             currentAirDash = Vector3.zero;
+            
+        }
+
+        if (grounded) {
             lastGroundedPosition = transform.position;
         }
 
@@ -97,8 +108,11 @@ public class GroundController : ControllerBase {
             if (maxJumps != 0 && (grounded || (!grounded && currentJumps < maxJumps))) {
 
                 velocity.y = jumpSpeed;
+
+                itemManager.jumps[itemManager.jumps.Count - currentJumps - 1].Deactivate();
                 currentJumps++;
                 grounded = false;
+                
 
             }
 
@@ -137,7 +151,7 @@ public class GroundController : ControllerBase {
 
         rigidBody.velocity = velocity;
 
-
+        prevGrounded = grounded;
 
 
 

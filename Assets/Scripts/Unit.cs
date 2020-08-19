@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
 
     public int HP = 1;
     public int MaxHP;
-
+    public Vector3 particleSystemOffset;
 
 
     public void TakeDamage(int amount) {
@@ -41,7 +41,9 @@ public class Unit : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    public void SpawnParticleSystem(GameObject prefab) {
+        Instantiate(prefab, transform.position, Quaternion.identity);
+    }
 
 
 

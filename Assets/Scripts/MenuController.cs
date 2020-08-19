@@ -23,6 +23,7 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         controller.Resume();
         aSource.UnPause();
+        if (ItemManager.instance != null)ItemManager.instance.wordBox.gameObject.SetActive(false);
 
     }
 
@@ -58,7 +59,7 @@ public class MenuController : MonoBehaviour
 
             if (paused) {
                 Resume();
-            } else {
+            } else if (Time.timeScale != 0) {
                 Pause();
             }
 

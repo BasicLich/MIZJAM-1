@@ -8,7 +8,7 @@ public class GroundEnemyFollowPlayer : Unit
 
     NavMeshAgent nav;
     Transform follow;
-
+    public bool active;
     
 
 
@@ -21,7 +21,9 @@ public class GroundEnemyFollowPlayer : Unit
 
 
     private void Update() {
-        nav.SetDestination(follow.position);
+        if (active) {
+            nav.SetDestination(follow.position);
+        }
         SplashCheck();
     }
 

@@ -24,10 +24,25 @@ public class ItemManager : Unit
     public Transform buttonSpot;
 
     public static ItemManager instance;
+    [Header("JumpBar")]
+    public List<JumpIcon> jumps;
+    public JumpIcon jumpIconPrefab;
+    public Transform jumpSortingObject;
+
 
     private void Awake() {
         instance = this;
         healthBar.init(HP, MaxHP);
+        SetText(wordBuilder.words);
+    }
+
+    public void ReactivateAllJumps() {
+
+        controller.currentJumps = 0;
+        foreach (JumpIcon j in jumps) {
+            j.Activate();
+        }
+
     }
 
     public void EquipItem(HeldItem h) {
@@ -70,7 +85,7 @@ public class ItemManager : Unit
 
 
         h.OnInitialSetup(this);
-
+        h.OnPickup.Invoke();
         h.transform.SetParent(hand);
         h.transform.localPosition = Vector3.zero;
         h.transform.localRotation = Quaternion.identity;
@@ -90,10 +105,10 @@ public class ItemManager : Unit
         ItemButton  i = Instantiate(itemButtonPrefab, buttonSpot);
         i.init(h.icon, h);
         buttons.Add(i);
-
+        h.itemButton = i;
 
         h.OnInitialSetup(this);
-
+        
 
 
     }
@@ -196,7 +211,15 @@ public class ItemManager : Unit
 
         if (Input.GetKeyDown(KeyCode.E)) {
 
-            wordBox.gameObject.SetActive(false);
+           // if (wordBox.gameObject.activeInHierarchy) {
+
+           //     Cursor.visible = false;
+           //     Cursor.lockState = CursorLockMode.Locked;
+           //     Time.timeScale = 1;
+           //     instance.controller.canMove = true;
+
+           //     wordBox.gameObject.SetActive(false);
+          //  }
 
 
         }
@@ -237,6 +260,10 @@ public class ItemManager : Unit
 
     public static void AddJump() {
 
+
+        JumpIcon j = Instantiate(instance.jumpIconPrefab, instance.jumpSortingObject);
+        instance.jumps.Add(j);
+        instance.ReactivateAllJumps();
         instance.controller.maxJumps++;
         
 
@@ -251,10 +278,30 @@ public class ItemManager : Unit
     }
 
 
+    public float textDisplayTime;
+
+
+    IEnumerator CloseTextInSeconds(float secs) {
+
+        yield return new WaitForSeconds(secs);
+        instance.wordBox.gameObject.SetActive(false);
+
+    }
+
     public static void SetText(string s) {
+       // Cursor.visible = true;
+       // Cursor.lockState = CursorLockMode.None;
+
+       // Time.timeScale = 0;
+       // instance.controller.canMove = false;
         instance.wordBox.gameObject.SetActive(true);
         instance.wordBuilder.words = s;
         instance.wordBuilder.CreateWord();
+        instance.StartCoroutine(instance.CloseTextInSeconds(instance.textDisplayTime));
+    }
+
+    public void NormalSetText(string s) {
+        SetText(s);
     }
 
 

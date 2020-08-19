@@ -9,8 +9,11 @@ public class GunItem : HeldItem {
     public Projectile bullet;
     public float bulletSpeed;
     public int shotDamage = 1;
-
     public SpreadAimSpot spreadSpot;
+    public int currentAmmo = 10;
+    public int maxAmmo = 30;
+    
+
 
     public override void OnInitialSetup(ItemManager i) {
         base.OnEquip(i);
@@ -26,12 +29,15 @@ public class GunItem : HeldItem {
     public override void OnClick() {
 
 
-        
 
-        Projectile p = Instantiate(bullet, shootPoint.position, Quaternion.identity);
-        p.init(GroundController.instance.aimPoint.forward, bulletSpeed, GroundController.instance.aimPoint.position, enemyLayer, shotDamage);
-       
 
+        if (currentAmmo > 0) {
+            Projectile p = Instantiate(bullet, shootPoint.position, Quaternion.identity);
+            p.init(GroundController.instance.aimPoint.forward, bulletSpeed, GroundController.instance.aimPoint.position, enemyLayer, shotDamage);
+            currentAmmo--;
+            itemButton.wordBuilder.words = currentAmmo.ToString();
+            itemButton.wordBuilder.CreateWord();
+        }
 
     }
 
