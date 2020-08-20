@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8095552109321223729}
   - component: {fileID: 8292692731258424769}
   - component: {fileID: 8784569320321235176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8155201383123889308}
   - component: {fileID: 1640859570305700540}
   - component: {fileID: 3343876286264793568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

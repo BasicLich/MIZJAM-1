@@ -18,10 +18,16 @@ public class HeldItem : MonoBehaviour
     public ItemButton itemButton;
     public UnityEvent OnPickup;
     
+    
 
     public virtual void OnInitialSetup(ItemManager i) {
 
-        
+        if (GetComponent<Rigidbody>()) {
+            Destroy(GetComponent<Rigidbody>());
+            foreach (Collider col in GetComponents<Collider>()) {
+                Destroy(col);
+            }
+        }
 
     }
 

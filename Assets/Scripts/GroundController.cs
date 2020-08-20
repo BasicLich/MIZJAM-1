@@ -170,8 +170,20 @@ public class GroundController : ControllerBase {
     }
 
 
+    public static float sensitivity = .5f;
 
-    
+    public void SetSensitivty(float amt) {
+
+        sensitivity = amt;
+        mouseXSpeed = 360 * amt;
+        mouseYSpeed = -360 * amt;
+
+
+    }
+
+
+
+
 
 
 

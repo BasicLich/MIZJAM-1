@@ -12,12 +12,27 @@ public class GhostSpawner : MonoBehaviour
     public float timeInBetweenGhosts = 1f;
     WaitForSeconds w;
     public List<Transform> spawnSpots;
+    public int maxGhostsAtOnce = 1;
+    private int currentGhostCount = 0;
+    public static GhostSpawner instance;
 
+
+    public void GhostDied() {
+        currentGhostCount--;
+    }
 
     private void Awake() {
+        instance = this;
         w = new WaitForSeconds(timeInBetweenGhosts);
+    }
+
+
+
+
+    public void StartSpawningGhosts() {
         StartCoroutine(SpawnGhosts());
     }
+
 
     public IEnumerator SpawnGhosts() {
 
@@ -28,10 +43,11 @@ public class GhostSpawner : MonoBehaviour
         int index = 0;
         while (index < numGhosts) {
 
-
-            Instantiate(ghostPrefab, spawnSpots.PickRandom().position, Quaternion.identity);
-
-            index++;
+            if (currentGhostCount < maxGhostsAtOnce) {
+                Instantiate(ghostPrefab, spawnSpots.PickRandom().position, Quaternion.identity);
+                index++;
+                currentGhostCount++;
+            }
             yield return w;
         }
 

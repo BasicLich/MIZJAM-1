@@ -12,10 +12,22 @@ public class GhostAI : Unit
     public float backAwayDistance = 2f;
 
 
-    
+
+    [Header("Projectile")]
+    public Projectile projectile;
+    public Transform projectileSpawnSpot;
+    public float projectileSpeed = 5f;
+    public int playerLayer = 8;
+
+    public void ShootProjectile() {
+        Projectile p = Instantiate(projectile, projectileSpawnSpot.position, Quaternion.identity);
+        p.init((player.transform.position - projectileSpawnSpot.position).normalized, projectileSpeed, projectileSpawnSpot.position, 9, 1);
+    }
 
 
-    private void Awake() {
+
+
+    private void Start() {
         rb = GetComponent<Rigidbody>();
         sinOffest = Random.Range(0, 360);
         player = GroundController.instance.transform;
@@ -24,8 +36,9 @@ public class GhostAI : Unit
     }
 
     [Header("BackAway Settings")]
-    private Vector3 backAway;
+    
     public  float backAwaySpeed = 10;
+    private Vector3 backAway;
     public float backawayDecel = 2f;
     public int moveDirection;
    
@@ -76,6 +89,11 @@ public class GhostAI : Unit
         StartSplash();
     }
 
+    public override void OnDeath() {
+        base.OnDeath();
+        GhostSpawner.instance.GhostDied();
+    }
+
 
 
     [Header("Splash Settings")]
@@ -87,6 +105,7 @@ public class GhostAI : Unit
 
 
     public void StartSplash() {
+        ShootProjectile();
         sprite.color = Damage;
         splashCounter = splashLength;
     }

@@ -155,7 +155,8 @@ public class ItemManager : Unit
     IEnumerator Death() {
         Cursor.lockState = CursorLockMode.Locked;
         isDead = true;
-        controller.Pause();
+        controller.canMove = false;
+        Time.timeScale = 1;
         yield return new WaitForSeconds(2f);
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;

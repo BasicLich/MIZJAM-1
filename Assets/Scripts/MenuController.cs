@@ -23,7 +23,7 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         controller.Resume();
         aSource.UnPause();
-        if (ItemManager.instance != null)ItemManager.instance.wordBox.gameObject.SetActive(false);
+       
 
     }
 
@@ -38,6 +38,7 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         controller.Pause();
         aSource.Pause();
+        if (ItemManager.instance != null) ItemManager.instance.wordBox.gameObject.SetActive(false);
 
 
     }
@@ -76,6 +77,8 @@ public class MenuController : MonoBehaviour
         gameUI.SetActive(false);
         loseScreen.SetActive(true);
         onLoseScreen = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
 

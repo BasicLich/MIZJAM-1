@@ -16,7 +16,7 @@ public class GunItem : HeldItem {
 
 
     public override void OnInitialSetup(ItemManager i) {
-        base.OnEquip(i);
+        base.OnInitialSetup(i);
 
         if (spreadSpot) {
             spreadSpot = Instantiate(spreadSpot, GroundController.instance.aimPoint);
@@ -33,7 +33,7 @@ public class GunItem : HeldItem {
 
         if (currentAmmo > 0) {
             Projectile p = Instantiate(bullet, shootPoint.position, Quaternion.identity);
-            p.init(GroundController.instance.aimPoint.forward, bulletSpeed, GroundController.instance.aimPoint.position, enemyLayer, shotDamage);
+            p.init(GroundController.instance.aimPoint.forward, bulletSpeed, GroundController.instance.aimPoint.position, 10, shotDamage);
             currentAmmo--;
             itemButton.wordBuilder.words = currentAmmo.ToString();
             itemButton.wordBuilder.CreateWord();

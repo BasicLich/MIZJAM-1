@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     Vector3 targetDirection;
     Vector3 aimPoint;
     private bool adjustedYet;
-    int targetLayer;
+    int targetLayer  = 10;
     int damage;
     public Rigidbody rb;
 
@@ -56,7 +56,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
 
-        if (other.gameObject.layer == 10) {
+        if (other.gameObject.layer == targetLayer) {
             print("Doing Damage " + damage);
             other.gameObject.GetComponent<Unit>().TakeDamage(damage);
 
