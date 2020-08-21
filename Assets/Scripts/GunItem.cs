@@ -15,6 +15,9 @@ public class GunItem : HeldItem {
     public int currentAmmo = 10;
     public int maxAmmo = 30;
 
+    public float shotInterval = 1f;
+    float lastShotTime;
+
     private void Awake() {
         currentAmmo = startingAmmo;
     }
@@ -51,11 +54,12 @@ public class GunItem : HeldItem {
 
 
 
-        if (currentAmmo > 0) {
+        if (currentAmmo > 0 && lastShotTime <= Time.time) {
             currentAmmo--;
             ShootProjectile();
             itemButton.wordBuilder.words = currentAmmo.ToString();
             itemButton.wordBuilder.CreateWord();
+            lastShotTime = Time.time + shotInterval;
         }
 
     }

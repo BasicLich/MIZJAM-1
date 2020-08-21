@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
@@ -44,5 +45,13 @@ public class AudioManager : MonoBehaviour
         current.Stop();
         
 
+    }
+
+    internal void Pause() {
+        sources[currentTrack].Pause();
+    }
+
+    public void Resume() {
+        sources[currentTrack].UnPause();
     }
 }

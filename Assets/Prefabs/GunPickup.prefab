@@ -123,14 +123,16 @@ MonoBehaviour:
   OnPickup:
     m_PersistentCalls:
       m_Calls: []
+  canSwitch: 1
   shootPoint: {fileID: 5131606725151060117}
   bullet: {fileID: 7625556471643383200, guid: 81848261972ae594ca70400b40a86224, type: 3}
   bulletSpeed: 30
   shotDamage: 1
   spreadSpot: {fileID: 0}
-  startingAmmo: 10
+  startingAmmo: 12
   currentAmmo: 10
-  maxAmmo: 30
+  maxAmmo: 40
+  shotInterval: 0.33
 --- !u!135 &5131606725483016898
 SphereCollider:
   m_ObjectHideFlags: 0

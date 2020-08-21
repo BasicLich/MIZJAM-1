@@ -7,6 +7,7 @@ public class MeleeHitBox : MonoBehaviour
 
     public int enemyLayer = 10;
     public int damage;
+    public bool healOnHit = false;
     
     private void OnTriggerEnter(Collider other) {
 
@@ -14,7 +15,7 @@ public class MeleeHitBox : MonoBehaviour
         if (other.gameObject.layer == enemyLayer) {
             
             other.GetComponent<Unit>().TakeDamage(damage);
-            if (other.GetComponent<Unit>().HP <= 0) {
+            if (healOnHit && other.GetComponent<Unit>().HP <= 0) {
 
                 if (Random.Range(0, 1f) > 0.5f) {
                     ItemManager.Heal();

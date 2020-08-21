@@ -170,9 +170,11 @@ public class ItemManager : Unit
     }
 
 
+    bool diedie = false;
     public override void OnDeath() {
 
-        if (!isDead) {
+        if (!diedie) {
+           
             StartCoroutine(Death());
         }
 
@@ -180,10 +182,11 @@ public class ItemManager : Unit
 
 
 
-    bool isDead = false;
+    
     IEnumerator Death() {
         Cursor.lockState = CursorLockMode.Locked;
         isDead = true;
+        diedie = true;
         controller.canMove = false;
         Time.timeScale = 1;
         yield return new WaitForSeconds(2f);

@@ -124,7 +124,7 @@ public class GhostAI : Unit
         EnemySpawner.instance.GhostDied();
         BossBar.instance.EnemyDied();
 
-        if (Random.Range(0f,1f) > 0.5f) {
+        if (Random.Range(0f,1f) < 0.8f) {
             PickupAndItemSpawner.instance.SpawnRandomItem(transform.position);
         }
 

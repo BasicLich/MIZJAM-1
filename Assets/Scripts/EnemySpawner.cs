@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Ground")]
     public float timeInBetweenGround = 1f;
     public int maxGroundAtOnce = 1;
-    private int currentGroundCount = 0;
+    public  int currentGroundCount = 0;
 
 
     WaitForSeconds w;
@@ -34,6 +34,10 @@ public class EnemySpawner : MonoBehaviour
 
     public void GroundDied() {
         currentGroundCount--;
+
+        if (currentGroundCount < 0) {
+            currentGroundCount = 0;
+        }
     }
 
     private void Awake() {
@@ -84,12 +88,12 @@ public class EnemySpawner : MonoBehaviour
         yield return wg;
 
 
-        int index = 0;
+        
         while (true) {
 
             if (currentGroundCount < maxGroundAtOnce) {
-                Instantiate(groundUnits, spawnSpots.PickRandom().position, Quaternion.identity).active = true;
-                index++;
+                Instantiate(groundUnits, spawnSpots.PickRandom().position, Quaternion.identity);
+                
                 currentGroundCount++;
             }
             yield return wg;

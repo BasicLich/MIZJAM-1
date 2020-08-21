@@ -10,7 +10,7 @@ public class Unit : MonoBehaviour
     public int HP = 1;
     public int MaxHP;
     public Vector3 particleSystemOffset;
-    bool isDead;
+    protected bool isDead;
 
     public void TakeDamage(int amount) {
 

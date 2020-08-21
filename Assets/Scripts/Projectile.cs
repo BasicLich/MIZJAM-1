@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     int targetLayer  = 10;
     int damage;
     public Rigidbody rb;
+    public float maxLifeTime = 10f;
 
     public void init(Vector3 direction, float spd, Vector3 aPoint, int tLayer, int d) {
 
@@ -24,6 +25,7 @@ public class Projectile : MonoBehaviour
         targetLayer = tLayer;
         damage = d;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        Destroy(gameObject, 10f);
 
     }
 

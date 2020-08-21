@@ -22,8 +22,8 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 1 ;
         Cursor.lockState = CursorLockMode.Locked;
         controller.Resume();
-        audioObject.SetActive(true);
-       
+        AudioManager.instance.Resume();
+
 
     }
 
@@ -37,7 +37,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         controller.Pause();
-        audioObject.SetActive(false);
+        AudioManager.instance.Pause();
         if (ItemManager.instance != null) ItemManager.instance.wordBox.gameObject.SetActive(false);
 
 

@@ -63,7 +63,7 @@ public class BossBar : MonoBehaviour
             case WorldState.BOSS:
 
 
-                fillImage.fillAmount = boss.HP / boss.MaxHP;
+                fillImage.fillAmount = (float)boss.HP / (float)boss.MaxHP;
 
                 break;
         }
