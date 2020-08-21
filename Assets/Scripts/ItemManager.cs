@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -58,6 +59,10 @@ public class ItemManager : Unit
 
     public void EquipItem(int index) {
 
+        if (currentItem && !currentItem.canSwitch) {
+            return;
+        }
+
         if (currentItem != null) {
             currentItem.gameObject.SetActive(false);
         }
@@ -83,32 +88,56 @@ public class ItemManager : Unit
 
     public void PickUpItem(HeldItem h) {
 
-
-        h.OnInitialSetup(this);
-        h.OnPickup.Invoke();
-        h.transform.SetParent(hand);
-        h.transform.localPosition = Vector3.zero;
-        h.transform.localRotation = Quaternion.identity;
-        items.Add(h);
-        h.gameObject.SetActive(false);
-
-        h.transform.GetChild(0).localPosition = h.posOffset;
-        h.transform.GetChild(0).localRotation = Quaternion.Euler(h.rotationOffset);
-        h.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        bool tf = false;
+        Type t = h.GetType() ;
 
 
+        
+        
+        HeldItem thing = null;
 
-        if (currentItem == null) {
-            EquipItem(0);
+        foreach (HeldItem go in items) {
+
+           // print("T: " + t.ToString() + " curr: " + go.GetType().ToString());
+
+            if (go.GetType() == t) {
+                tf = true;
+                thing = go;
+                break;
+            }
         }
 
-        ItemButton  i = Instantiate(itemButtonPrefab, buttonSpot);
-        i.init(h.icon, h);
-        buttons.Add(i);
-        h.itemButton = i;
+       
 
-        h.OnInitialSetup(this);
-        
+
+        if (tf) {
+           // print("Here");
+            thing.OnPickUpSecondItem(h);
+            Destroy(h.gameObject);
+
+        } else {
+
+            h.OnPickup.Invoke();
+            h.transform.SetParent(hand);
+            h.transform.localPosition = Vector3.zero;
+            h.transform.localRotation = Quaternion.identity;
+            items.Add(h);
+            h.gameObject.SetActive(false);
+            h.transform.GetChild(0).localPosition = h.posOffset;
+            h.transform.GetChild(0).localRotation = Quaternion.Euler(h.rotationOffset);
+            h.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            if (currentItem == null) {
+                EquipItem(0);
+            }
+            if (h.GetComponent<Billboard>()) {
+                Destroy(h.GetComponent<Billboard>());
+            }
+            ItemButton i = Instantiate(itemButtonPrefab, buttonSpot);
+            i.init(h.icon, h);
+            buttons.Add(i);
+            h.itemButton = i;
+            h.OnInitialSetup(this);
+        }
 
 
     }
@@ -207,6 +236,13 @@ public class ItemManager : Unit
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             if (items.Count > 1) {
                 EquipItem(1);
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            if (items.Count > 2) {
+                EquipItem(2);
             }
         }
 

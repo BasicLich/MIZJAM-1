@@ -17,13 +17,12 @@ public class SwordItem : HeldItem
         base.OnInitialSetup(i);
 
 
-        if (text != null && text != "") {
-            ItemManager.SetText(text);
-        }
+        
     }
 
     public void ActivateHitBox() {
         hitbox.gameObject.SetActive(true);
+        
     }
 
 
@@ -32,6 +31,7 @@ public class SwordItem : HeldItem
         hitbox.damage = damage;
         animator.SetTrigger("Attack");
         OnCooldown = true;
+        canSwitch = false;
     }
 
 
@@ -39,6 +39,7 @@ public class SwordItem : HeldItem
     public void DeactivateHitBox() {
         hitbox.gameObject.SetActive(false);
         OnCooldown = false;
+        canSwitch = true;
 
     }
 

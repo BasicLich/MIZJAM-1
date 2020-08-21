@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6914125774453327434}
   - component: {fileID: 6914125774453327441}
   - component: {fileID: -3517597292845396478}
+  - component: {fileID: 6242141597196798458}
   m_Layer: 10
   m_Name: Ghost
   m_TagString: Untagged
@@ -91,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18405c9ce9295604cb428501faddaf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
-  MaxHP: 0
+  HP: 3
+  MaxHP: 3
   particleSystemOffset: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   speed: 5
@@ -101,11 +102,12 @@ MonoBehaviour:
   projectile: {fileID: 7642248985488932370, guid: e6ddbcd3120413e43a46ea998c252489,
     type: 3}
   projectileSpawnSpot: {fileID: 3636994316360812244}
-  projectileSpeed: 5
+  projectileSpeed: 12
   playerLayer: 9
   backAwaySpeed: 4
   backawayDecel: 1
   moveDirection: 0
+  minTimeInBetweenProjectiles: 3
   sprite: {fileID: 6914125774453327441}
   Damage: {r: 0.90196085, g: 0.28235295, b: 0.18039216, a: 1}
   splashLength: 0.15
@@ -188,3 +190,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6915fb2ae40bd4bb904465e74da384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6242141597196798458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6914125774453327440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7674d1fb49c5ec4bacabad440fcb88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDes:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6914125774453327444}
+        m_MethodName: SpawnParticleSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2800431636717014943, guid: 6fb9221f85a46b54faf14b9a764aee10,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

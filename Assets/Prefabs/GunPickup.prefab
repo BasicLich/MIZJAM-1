@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5131606725483016894}
   - component: {fileID: 5131606725483016898}
   - component: {fileID: 5131606725483016901}
+  - component: {fileID: 9075004424249808505}
   m_Layer: 11
   m_Name: GunPickup
   m_TagString: Item
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ce1b01c0cf38d41b57e6b529d3cf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reticle: {fileID: 8777207091712680135, guid: f79c7c47de62c384691509bda1124750, type: 3}
+  reticle: {fileID: 2239784609871810536, guid: 4402cef602b99b642ad9718b898f0cc8, type: 3}
   icon: {fileID: 5418107097269686934, guid: f79c7c47de62c384691509bda1124750, type: 3}
   OnCooldown: 0
   enemyLayer:
@@ -127,6 +128,7 @@ MonoBehaviour:
   bulletSpeed: 30
   shotDamage: 1
   spreadSpot: {fileID: 0}
+  startingAmmo: 10
   currentAmmo: 10
   maxAmmo: 30
 --- !u!135 &5131606725483016898
@@ -157,7 +159,19 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &9075004424249808505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131606725483016895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6915fb2ae40bd4bb904465e74da384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5131606725873728581
 GameObject:
   m_ObjectHideFlags: 0

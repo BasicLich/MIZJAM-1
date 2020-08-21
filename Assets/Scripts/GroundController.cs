@@ -65,6 +65,9 @@ public class GroundController : ControllerBase {
         
     }
 
+    float jumpcdTimer;
+    float cantjumpAfterJump = 0.5f;
+
     // Update is called once per frame
     void Update() {
 
@@ -89,8 +92,12 @@ public class GroundController : ControllerBase {
         velocity = velocity * walkSpeed;
         velocity.y = rigidBody.velocity.y;
 
-        
-        grounded = feetCheck.grounded;
+      //  if (jumpcdTimer > 0) {
+       //     grounded = false;
+       //     jumpcdTimer -= Time.deltaTime;
+       // } else {
+            grounded = feetCheck.grounded;
+       // }
 
         if (grounded && !prevGrounded) {
             itemManager.ReactivateAllJumps();
@@ -108,10 +115,11 @@ public class GroundController : ControllerBase {
             if (maxJumps != 0 && (grounded || (!grounded && currentJumps < maxJumps))) {
 
                 velocity.y = jumpSpeed;
-
                 itemManager.jumps[itemManager.jumps.Count - currentJumps - 1].Deactivate();
                 currentJumps++;
-                grounded = false;
+
+                
+
                 
 
             }

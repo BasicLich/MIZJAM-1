@@ -10,14 +10,17 @@ public class Unit : MonoBehaviour
     public int HP = 1;
     public int MaxHP;
     public Vector3 particleSystemOffset;
-
+    bool isDead;
 
     public void TakeDamage(int amount) {
+
+        if (isDead) return;
 
         HP -= amount;
         OnHit();
         if (HP <= 0) {
             HP = 0;
+            isDead = true;
             Die();
         } 
 
@@ -44,6 +47,9 @@ public class Unit : MonoBehaviour
     public void SpawnParticleSystem(GameObject prefab) {
         Instantiate(prefab, transform.position, Quaternion.identity);
     }
+
+
+
 
 
 

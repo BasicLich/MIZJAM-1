@@ -11,7 +11,14 @@ public class WordBuilder : MonoBehaviour
     public string words;
     private int stableAmount;
     private List<Image> imgArray =  new List<Image>();
-   
+    public bool makeWordOnStart = false;
+
+
+    private void Start() {
+        if (makeWordOnStart) {
+            CreateWord();
+        }
+    }
 
     [ContextMenu("Create")]
     public void CreateWord() {

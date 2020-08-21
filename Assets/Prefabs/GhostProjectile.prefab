@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1241533274620573466}
   - component: {fileID: 8954251113042484494}
   - component: {fileID: 5875488355413929547}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7642248985488932370}
   - component: {fileID: 6351339558028360159}
   - component: {fileID: 4862888849147436407}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: GhostProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ffee3fe2c3b2e4ba08685d8d08b07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer: 9
   rb: {fileID: 6351339558028360159}
 --- !u!54 &6351339558028360159
 Rigidbody:
@@ -167,8 +166,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7730410371210055347}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}

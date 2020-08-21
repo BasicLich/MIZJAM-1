@@ -33,6 +33,21 @@ public class GroundEnemyFollowPlayer : Unit
         StartSplash();
     }
 
+    public override void OnDeath() {
+
+
+        EnemySpawner.instance.GroundDied();
+        if (BossBar.instance)BossBar.instance.EnemyDied();
+
+        if (Random.Range(0f, 1f) > 0.5f) {
+            PickupAndItemSpawner.instance.SpawnRandomItem(transform.position);
+        }
+        base.OnDeath();
+
+
+
+    }
+
 
     [Header("Splash Settings")]
     public SpriteRenderer sprite;

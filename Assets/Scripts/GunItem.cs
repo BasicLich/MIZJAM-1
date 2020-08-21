@@ -10,9 +10,14 @@ public class GunItem : HeldItem {
     public float bulletSpeed;
     public int shotDamage = 1;
     public SpreadAimSpot spreadSpot;
+    public int startingAmmo = 10;
+    [HideInInspector]
     public int currentAmmo = 10;
     public int maxAmmo = 30;
-    
+
+    private void Awake() {
+        currentAmmo = startingAmmo;
+    }
 
 
     public override void OnInitialSetup(ItemManager i) {
@@ -23,6 +28,21 @@ public class GunItem : HeldItem {
             spreadSpot.transform.localPosition = Vector3.zero;
         }
 
+        itemButton.wordBuilder.words = currentAmmo.ToString();
+        itemButton.wordBuilder.CreateWord();
+
+    }
+
+
+    public override void OnPickUpSecondItem(HeldItem h) {
+        AddAmmo(((GunItem)h).currentAmmo);
+    }
+
+    public void AddAmmo(int amt) {
+        currentAmmo += amt;
+        currentAmmo = Mathf.Min(currentAmmo, maxAmmo);
+        itemButton.wordBuilder.words = currentAmmo.ToString();
+        itemButton.wordBuilder.CreateWord();
     }
 
 
@@ -32,15 +52,27 @@ public class GunItem : HeldItem {
 
 
         if (currentAmmo > 0) {
-            Projectile p = Instantiate(bullet, shootPoint.position, Quaternion.identity);
-            p.init(GroundController.instance.aimPoint.forward, bulletSpeed, GroundController.instance.aimPoint.position, 10, shotDamage);
             currentAmmo--;
+            ShootProjectile();
             itemButton.wordBuilder.words = currentAmmo.ToString();
             itemButton.wordBuilder.CreateWord();
         }
 
     }
 
+
+    public virtual void ShootProjectile() {
+        Projectile p = Instantiate(bullet, shootPoint.position, Quaternion.identity);
+        p.init(GroundController.instance.aimPoint.forward, bulletSpeed, GroundController.instance.aimPoint.position, 10, shotDamage);
+    
+        if (spreadSpot) {
+            foreach (Transform t in spreadSpot.otherShots) {
+                Projectile p1 = Instantiate(bullet, shootPoint.position, Quaternion.identity);
+                p1.init(t.forward, bulletSpeed, t.position, 10, shotDamage);
+            }
+        }
+    
+    }
 
 
 }

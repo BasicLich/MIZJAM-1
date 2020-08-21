@@ -10,7 +10,7 @@ public class MenuController : MonoBehaviour
     public ControllerBase controller;
     public GameObject pauseMenu, gameUI, loseScreen;
     public bool paused = false;
-    public AudioSource aSource;
+    public GameObject audioObject;
 
     public void Resume() {
 
@@ -22,7 +22,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 1 ;
         Cursor.lockState = CursorLockMode.Locked;
         controller.Resume();
-        aSource.UnPause();
+        audioObject.SetActive(true);
        
 
     }
@@ -37,7 +37,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         controller.Pause();
-        aSource.Pause();
+        audioObject.SetActive(false);
         if (ItemManager.instance != null) ItemManager.instance.wordBox.gameObject.SetActive(false);
 
 

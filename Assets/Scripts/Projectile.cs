@@ -48,20 +48,21 @@ public class Projectile : MonoBehaviour
 
 
 
-  //  private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
 
-
+          if (other.gameObject.layer == targetLayer) {
+           // print("Doing Damage " + damage);
+            other.gameObject.GetComponent<Unit>().TakeDamage(damage);
+            Destroy(gameObject);
+            } else if (other.gameObject.layer == 8) {
+            //Destroy(gameObject);
+          }
         
-   // }
+    }
 
     private void OnCollisionEnter(Collision other) {
 
-        if (other.gameObject.layer == targetLayer) {
-            print("Doing Damage " + damage);
-            other.gameObject.GetComponent<Unit>().TakeDamage(damage);
-
-        }
-        Destroy(gameObject);
+      
     }
 
 

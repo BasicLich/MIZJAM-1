@@ -6,15 +6,27 @@ public class FeetCheck : MonoBehaviour
 {
 
     public int groundLayer;
+    public int numberOfThings = 0;
     public bool grounded = false;
 
     private void OnTriggerEnter(Collider collision) {
-        if (collision.gameObject.layer == groundLayer) grounded = true;
+        if (collision.gameObject.layer == groundLayer) {
+           
+            numberOfThings++;
+            grounded = true;
+            
+        }
     }
 
 
     private void OnTriggerExit(Collider collision) {
-        if (collision.gameObject.layer == groundLayer) grounded = false;
+        if (collision.gameObject.layer == groundLayer) {
+            numberOfThings--;
+            if (numberOfThings <= 0) {
+                numberOfThings = 0;
+                grounded = false;
+            }
+        }
     }
 
 

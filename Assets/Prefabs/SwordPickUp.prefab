@@ -61,8 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e4e03515c9f1940be3b9364adf159d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reticle: {fileID: -1578784041813398291, guid: f79c7c47de62c384691509bda1124750,
-    type: 3}
+  reticle: {fileID: 4818941430974113779, guid: 4402cef602b99b642ad9718b898f0cc8, type: 3}
   icon: {fileID: -9014361345521653320, guid: f79c7c47de62c384691509bda1124750, type: 3}
   OnCooldown: 0
   enemyLayer:
@@ -71,6 +70,9 @@ MonoBehaviour:
   posOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
   itemButton: {fileID: 0}
+  OnPickup:
+    m_PersistentCalls:
+      m_Calls: []
   hitbox: {fileID: 0}
   animator: {fileID: 2514229365666854386}
   damage: 1

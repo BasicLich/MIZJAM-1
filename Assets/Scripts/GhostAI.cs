@@ -22,6 +22,7 @@ public class GhostAI : Unit
     public void ShootProjectile() {
         Projectile p = Instantiate(projectile, projectileSpawnSpot.position, Quaternion.identity);
         p.init((player.transform.position - projectileSpawnSpot.position).normalized, projectileSpeed, projectileSpawnSpot.position, 9, 1);
+       // print("WEASDSDS");
     }
 
 
@@ -45,12 +46,39 @@ public class GhostAI : Unit
 
     Vector3 velocity = new Vector3();
     float distance;
+
+    public float minTimeInBetweenProjectiles = 3f;
+    float projectileTimer = 0;
+
+    private void Update() {
+
+
+        
+
+
+
+
+
+
+    }
+
+
     private void FixedUpdate() {
 
 
         if (backAway != Vector3.zero) {
           backAway =   Vector3.MoveTowards(backAway, Vector3.zero, Time.deltaTime * backawayDecel);
         }
+
+        if (projectileTimer <= 0) {
+
+            projectileTimer = minTimeInBetweenProjectiles;
+            ShootProjectile();
+
+        } else {
+            projectileTimer -= Time.deltaTime;
+        }
+
 
         distance = Vector3.Distance(transform.position, player.position);
 
@@ -61,7 +89,7 @@ public class GhostAI : Unit
 
         } else if (distance < stopDistance) {
 
-
+          
             velocity = (player.transform.position - transform.position).normalized * (speed / 5);
             //velocity.y += 1 + (Mathf.Sin(Time.time + sinOffest));
             velocity += transform.right * moveDirection * speed/2;
@@ -80,6 +108,8 @@ public class GhostAI : Unit
 
         SplashCheck();
 
+       
+
     }
 
 
@@ -91,7 +121,13 @@ public class GhostAI : Unit
 
     public override void OnDeath() {
         base.OnDeath();
-        GhostSpawner.instance.GhostDied();
+        EnemySpawner.instance.GhostDied();
+        BossBar.instance.EnemyDied();
+
+        if (Random.Range(0f,1f) > 0.5f) {
+            PickupAndItemSpawner.instance.SpawnRandomItem(transform.position);
+        }
+
     }
 
 
@@ -105,7 +141,6 @@ public class GhostAI : Unit
 
 
     public void StartSplash() {
-        ShootProjectile();
         sprite.color = Damage;
         splashCounter = splashLength;
     }

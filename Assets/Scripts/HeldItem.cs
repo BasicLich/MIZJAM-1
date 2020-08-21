@@ -17,7 +17,7 @@ public class HeldItem : MonoBehaviour
     [HideInInspector]
     public ItemButton itemButton;
     public UnityEvent OnPickup;
-    
+    public bool canSwitch = true;
     
 
     public virtual void OnInitialSetup(ItemManager i) {
@@ -28,6 +28,13 @@ public class HeldItem : MonoBehaviour
                 Destroy(col);
             }
         }
+        canSwitch = true;
+
+    }
+
+
+
+    public virtual void OnPickUpSecondItem(HeldItem h) {
 
     }
 

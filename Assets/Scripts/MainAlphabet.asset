@@ -84,6 +84,6 @@ MonoBehaviour:
   - ch: 122
     spr: {fileID: -7883779674286137895, guid: 366120bbd719108439d9194059f14794, type: 3}
   - ch: 32
-    spr: {fileID: -731208781563574455, guid: f79c7c47de62c384691509bda1124750, type: 3}
+    spr: {fileID: 21300000, guid: 18ecacd59803ba044af149307595bc0c, type: 3}
   - ch: 110
     spr: {fileID: -8743923282464806245, guid: 366120bbd719108439d9194059f14794, type: 3}
