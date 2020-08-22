@@ -76,8 +76,8 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void SwitchToBossFight() {
-        maxGhostsAtOnce = 2;
-        maxGroundAtOnce = 2;
+        maxGhostsAtOnce = 3;
+        maxGroundAtOnce = 3;
 
     }
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3311557458713093724}
   - component: {fileID: -497494797637473764}
   m_Layer: 12
-  m_Name: Bullet
+  m_Name: ShotGunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -497494797637473764}
-  maxLifeTime: 2
+  maxLifeTime: 0.75
 --- !u!65 &-3311557458713093724
 BoxCollider:
   m_ObjectHideFlags: 0

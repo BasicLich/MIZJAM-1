@@ -60,11 +60,14 @@ public class GunItem : HeldItem {
             itemButton.wordBuilder.words = currentAmmo.ToString();
             itemButton.wordBuilder.CreateWord();
             lastShotTime = Time.time + shotInterval;
+        } else if (currentAmmo <= 0 ) {
+            noAmmoSource.Play();
         }
 
     }
 
-
+    public AudioSource gunSource;
+    public AudioSource noAmmoSource;
     public virtual void ShootProjectile() {
         Projectile p = Instantiate(bullet, shootPoint.position, Quaternion.identity);
         p.init(GroundController.instance.aimPoint.forward, bulletSpeed, GroundController.instance.aimPoint.position, 10, shotDamage);
@@ -75,7 +78,9 @@ public class GunItem : HeldItem {
                 p1.init(t.forward, bulletSpeed, t.position, 10, shotDamage);
             }
         }
-    
+
+        gunSource.Play();
+
     }
 
 

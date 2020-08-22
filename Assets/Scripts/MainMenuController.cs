@@ -8,7 +8,8 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -23,6 +24,11 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("BattleScene");
 
 
+    }
+
+
+    public void Quit() {
+        Application.Quit();
     }
 
 

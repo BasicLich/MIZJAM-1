@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ItemManager : Unit
@@ -23,6 +24,8 @@ public class ItemManager : Unit
     public ItemButton itemButtonPrefab;
     public List<ItemButton> buttons = new List<ItemButton>();
     public Transform buttonSpot;
+    public HitFlash hitFlash;
+
 
     public static ItemManager instance;
     [Header("JumpBar")]
@@ -166,6 +169,7 @@ public class ItemManager : Unit
 
 
         healthBar.SetHealthToHP(HP);
+        hitFlash.GetHit();
 
     }
 
@@ -213,6 +217,20 @@ public class ItemManager : Unit
 
 
     };
+
+
+
+    public void EndGame() {
+        StartCoroutine(end());
+    }
+
+
+
+    IEnumerator end() {
+
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MainMenu");
+    }
 
 
     private void Update() {

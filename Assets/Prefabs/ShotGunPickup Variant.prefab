@@ -26,15 +26,17 @@ MonoBehaviour:
       m_Calls: []
   canSwitch: 1
   shootPoint: {fileID: 7230810904845663703}
-  bullet: {fileID: 7625556471643383200, guid: 81848261972ae594ca70400b40a86224, type: 3}
+  bullet: {fileID: 7625556471643383200, guid: 9d7727500aa80864c93cf7f9d63a4e98, type: 3}
   bulletSpeed: 30
   shotDamage: 1
   spreadSpot: {fileID: 6895641423311878467, guid: 47fc521fa0b341b4f8de6e64d882a449,
     type: 3}
   startingAmmo: 5
   currentAmmo: 10
-  maxAmmo: 40
-  shotInterval: 1
+  maxAmmo: 15
+  shotInterval: 0.5
+  gunSource: {fileID: 4831210695549399364}
+  noAmmoSource: {fileID: 1560366116563868437}
 --- !u!1001 &2553014416450440514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,6 +116,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6652612533437022688, guid: f79c7c47de62c384691509bda1124750,
         type: 3}
+    - target: {fileID: 6946179629353860102, guid: caae60d43ae34944086f4caabf22e10d,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5fa077df7b664ad4986dc797e23f8f5a, type: 3}
     m_RemovedComponents:
     - {fileID: 5131606725483016894, guid: caae60d43ae34944086f4caabf22e10d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: caae60d43ae34944086f4caabf22e10d, type: 3}
@@ -126,6 +133,18 @@ GameObject:
 --- !u!4 &7230810904845663703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5131606725151060117, guid: caae60d43ae34944086f4caabf22e10d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2553014416450440514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &4831210695549399364 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6946179629353860102, guid: caae60d43ae34944086f4caabf22e10d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2553014416450440514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1560366116563868437 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3947873064160761431, guid: caae60d43ae34944086f4caabf22e10d,
     type: 3}
   m_PrefabInstance: {fileID: 2553014416450440514}
   m_PrefabAsset: {fileID: 0}

@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         targetLayer = tLayer;
         damage = d;
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, maxLifeTime);
 
     }
 

@@ -68,7 +68,9 @@ public class GroundController : ControllerBase {
 
     float jumpcdTimer;
     float cantjumpAfterJump = 0.5f;
+    public float angleRange = 60f;
 
+    float camX;
     // Update is called once per frame
     void Update() {
 
@@ -80,9 +82,15 @@ public class GroundController : ControllerBase {
         mouseYInput = Input.GetAxis("Mouse Y");
 
         transform.Rotate(0, mouseXInput * Time.deltaTime * mouseXSpeed, 0);
-        cam.transform.Rotate(mouseYInput * Time.deltaTime * mouseYSpeed, 0, 0);
+        camX += mouseYInput * Time.deltaTime * mouseYSpeed;
+        camX = Mathf.Clamp(camX, -angleRange, angleRange);
 
-        
+        cam.transform.localEulerAngles = new Vector3(camX, 0, 0);
+
+
+
+
+
 
         velocity = cam.transform.forward * inputVertical +
                    cam.transform.right * inputHorizontal;
@@ -134,7 +142,7 @@ public class GroundController : ControllerBase {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !grounded && currentAirDash == Vector3.zero) {
 
 
             //currentAirDash = (cam.transform.forward);

@@ -11,6 +11,7 @@ public class GhostAI : Unit
     public float stopDistance = 1.5f;
     public float backAwayDistance = 2f;
 
+    public AudioSource source;
 
 
     [Header("Projectile")]
@@ -22,6 +23,7 @@ public class GhostAI : Unit
     public void ShootProjectile() {
         Projectile p = Instantiate(projectile, projectileSpawnSpot.position, Quaternion.identity);
         p.init((player.transform.position - projectileSpawnSpot.position).normalized, projectileSpeed, projectileSpawnSpot.position, 9, 1);
+        source.Play();
        // print("WEASDSDS");
     }
 
@@ -50,17 +52,7 @@ public class GhostAI : Unit
     public float minTimeInBetweenProjectiles = 3f;
     float projectileTimer = 0;
 
-    private void Update() {
-
-
-        
-
-
-
-
-
-
-    }
+   
 
 
     private void FixedUpdate() {
@@ -73,7 +65,7 @@ public class GhostAI : Unit
         if (projectileTimer <= 0) {
 
             projectileTimer = minTimeInBetweenProjectiles;
-            ShootProjectile();
+            StartShootSplash();
 
         } else {
             projectileTimer -= Time.deltaTime;
@@ -107,7 +99,7 @@ public class GhostAI : Unit
 
 
         SplashCheck();
-
+        ShootSplashCheck();
        
 
     }
@@ -139,11 +131,35 @@ public class GhostAI : Unit
     public float splashLength;
     private float splashCounter;
 
+    [Header("Shoot Splash Settings")]
+   
+    public Color shootColor;
+    public float shootSplashLength;
+    private float shootSplashCounter;
+
 
     public void StartSplash() {
         sprite.color = Damage;
         splashCounter = splashLength;
     }
+
+    public void StartShootSplash() {
+        sprite.color = shootColor;
+        shootSplashCounter = shootSplashLength;
+    }
+
+
+
+    public void ShootSplashCheck() {
+        if (shootSplashCounter > 0) {
+            shootSplashCounter -= Time.deltaTime;
+            if (shootSplashCounter <= 0) {
+                sprite.color = defaultColor;
+                ShootProjectile();
+            }
+        }
+    }
+
 
     public void SplashCheck() {
         if (splashCounter > 0) {

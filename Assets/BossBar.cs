@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -71,6 +72,9 @@ public class BossBar : MonoBehaviour
                     state = WorldState.ENDSTATE;
                     fillImage.fillAmount = 0;
 
+
+                    
+
                     foreach (Unit g in UnityEngine.Object.FindObjectsOfType<Unit>()) {
                         if (g is ItemManager) {
 
@@ -85,6 +89,14 @@ public class BossBar : MonoBehaviour
                     crown.gameObject.SetActive(true);
 
                 } else {
+
+                    if (Time.time > lastHeal) {
+                        boss.HP++;
+                        if (boss.HP > boss.MaxHP) boss.HP = boss.MaxHP;
+                        lastHeal = Time.time + healInterval;
+                    }
+
+
                     fillImage.fillAmount = (float)boss.HP / (float)boss.MaxHP;
                 }
 
@@ -97,6 +109,9 @@ public class BossBar : MonoBehaviour
 
     }
 
+
+    float lastHeal = 0;
+    public float healInterval = 5f;
 
     public void GoToBossState () {
 
