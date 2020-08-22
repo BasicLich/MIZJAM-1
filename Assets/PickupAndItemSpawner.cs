@@ -9,9 +9,14 @@ public class PickupAndItemSpawner : MonoBehaviour
     public List<ObjectSpawner> spawner = new List<ObjectSpawner>();
     public List<GameObject> items = new List<GameObject>();
     public static PickupAndItemSpawner instance;
+    public float pickupTime;
+
+
+    WaitForSeconds w;
 
     private void Awake() {
         instance = this;
+        w = new WaitForSeconds(pickupTime);
     }
 
 
@@ -29,6 +34,29 @@ public class PickupAndItemSpawner : MonoBehaviour
 
     public void SpawnRandomItem(Vector3 pos) {
         SpawnItem(Random.Range(0, items.Count), pos + (Vector3.up * 2), Vector3.zero);
+    }
+
+
+
+    public void SpawnRandomPickupsRoutine() {
+        StartCoroutine(SpawnStuff());
+    }
+
+    public IEnumerator SpawnStuff() {
+
+
+        yield return w;
+
+
+        while (true) {
+            SpawnRandomItem(spawner.PickRandom().transform.position);
+            yield return w;
+        }
+
+
+
+
+
     }
 
 

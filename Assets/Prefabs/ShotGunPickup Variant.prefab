@@ -34,6 +34,7 @@ MonoBehaviour:
   startingAmmo: 5
   currentAmmo: 10
   maxAmmo: 40
+  shotInterval: 1
 --- !u!1001 &2553014416450440514
 PrefabInstance:
   m_ObjectHideFlags: 0

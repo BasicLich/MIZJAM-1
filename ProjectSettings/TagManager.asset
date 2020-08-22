@@ -40,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Highest
+    uniqueID: 1206761723
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

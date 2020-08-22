@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &292551062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292551063}
+  - component: {fileID: 292551064}
+  m_Layer: 10
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &292551063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292551062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.774, y: -1.146, z: -0.251}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7404258353959193489}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &292551064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292551062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeaed855c31823340a8dac92896bb7b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &477896566839133040
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +55,7 @@ GameObject:
   - component: {fileID: 477896566839133047}
   - component: {fileID: 477896566839133044}
   - component: {fileID: 477896566839133045}
+  - component: {fileID: 5468046297479038972}
   m_Layer: 10
   m_Name: DEUSREX
   m_TagString: Untagged
@@ -49,6 +93,24 @@ MonoBehaviour:
   HP: 100
   MaxHP: 100
   particleSystemOffset: {x: 0, y: 0, z: 0}
+  shootSpeed: 10
+  bossBullets:
+  - {fileID: 7642248985488932370, guid: f4298c7b24badc042b457c42a0e9ee5f, type: 3}
+  - {fileID: 7642248985488932370, guid: ca1ee15ddb40fec4ba9010bbbc24e4e1, type: 3}
+  - {fileID: 7642248985488932370, guid: caaf378cd0cb1174c95f81fbf6d48ba8, type: 3}
+  shootPoint: {fileID: 292551063}
+  numberOfBullets: 20
+  timeInBetweenBullets: 0.1
+  timeAfterAttack: 5
+  width: 5
+  height: 5
+  wallTime: 5
+  waves: 3
+  timeInBetweenWaves: 1
+  mRenderer: {fileID: 5090897277205411853}
+  normal: {fileID: 2100000, guid: 73378acf516920442bfa78cedb924eb0, type: 2}
+  damage: {fileID: 2100000, guid: 63097320c40d5a34184274784ae89c24, type: 2}
+  splashLength: 0.1
 --- !u!135 &477896566839133044
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -60,8 +122,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.94755715
-  m_Center: {x: 0.026834106, y: -0.17863369, z: 0.08615637}
+  m_Radius: 1.0264103
+  m_Center: {x: -0.2035347, y: -0.20263691, z: 0.08615637}
 --- !u!54 &477896566839133045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -78,6 +140,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &5468046297479038972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477896566839133040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7674d1fb49c5ec4bacabad440fcb88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDes:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 477896566839133047}
+        m_MethodName: SpawnParticleSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2800431636717014943, guid: b79f8dbd7142e90488e5489efdb1fac6,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &477896567356933286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,6 +259,12 @@ PrefabInstance:
 --- !u!4 &7404258353959193489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6944798956996300599, guid: a34d52fb89976864ea6442ee1422eaa5,
+    type: 3}
+  m_PrefabInstance: {fileID: 477896567356933286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5090897277205411853 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4613749237826763947, guid: a34d52fb89976864ea6442ee1422eaa5,
     type: 3}
   m_PrefabInstance: {fileID: 477896567356933286}
   m_PrefabAsset: {fileID: 0}

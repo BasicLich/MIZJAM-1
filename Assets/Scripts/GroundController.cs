@@ -55,6 +55,7 @@ public class GroundController : ControllerBase {
 
     private void Awake() {
         instance = this;
+        SetSensitivty(sensitivity);
     }
 
     // Start is called before the first frame update

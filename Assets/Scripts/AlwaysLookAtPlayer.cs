@@ -10,8 +10,13 @@ public class AlwaysLookAtPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        followCam = GroundController.instance.cam.transform;
+        followCam = GroundController.instance.transform;
     }
 
-    
+
+    private void Update() {
+        transform.LookAt(followCam);
+    }
+
+
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public enum WorldState { IDLE, CHARGING, BOSS };
+public enum WorldState { IDLE, CHARGING, BOSS, ENDSTATE };
 public class BossBar : MonoBehaviour
 {
 
@@ -16,6 +16,7 @@ public class BossBar : MonoBehaviour
     public Transform bossPosition;
     public Unit boss;
     public float bossBarDecreasePerSecond = 100f;
+    public Transform crown;
 
     public WorldState state;
 
@@ -63,9 +64,34 @@ public class BossBar : MonoBehaviour
             case WorldState.BOSS:
 
 
-                fillImage.fillAmount = (float)boss.HP / (float)boss.MaxHP;
+                if (boss == null || boss.HP <= 0) {
+
+                    word.words = "CLAIM THE CROWN";
+                    word.CreateWord();
+                    state = WorldState.ENDSTATE;
+                    fillImage.fillAmount = 0;
+
+                    foreach (Unit g in UnityEngine.Object.FindObjectsOfType<Unit>()) {
+                        if (g is ItemManager) {
+
+                        } else {
+                            Destroy(g.gameObject);
+                        }
+                    }
+
+                    EnemySpawner.instance.StopAllCoroutines();
+                    PickupAndItemSpawner.instance.StopAllCoroutines();
+
+                    crown.gameObject.SetActive(true);
+
+                } else {
+                    fillImage.fillAmount = (float)boss.HP / (float)boss.MaxHP;
+                }
 
                 break;
+            case WorldState.ENDSTATE:
+
+            break;
         }
 
 
