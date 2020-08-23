@@ -11,6 +11,9 @@ public class OnDestroyEvent : MonoBehaviour
 
 
     private void OnDestroy() {
+        
+        
+        
         onDes.Invoke();
     }
 
